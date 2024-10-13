@@ -43,13 +43,20 @@
         <p class="author">This site author is Muhammad Sufyan aka @sufiprog</p>
     </div>
     <script>
-        (function countdown() {
+        // Function to calculate and update the timer
+        function updateTimer() {
             const timerElement = document.getElementById('timer');
             const targetDate = new Date().getTime() + 15 * 24 * 60 * 60 * 1000; // 15 days from now
 
-            function updateTimer() {
+            function calculateTime() {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    timerElement.textContent = 'Launching soon!';
+                    return;
+                }
 
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -57,16 +64,14 @@
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 timerElement.textContent = `${days} days ${hours}:${minutes}:${seconds}`;
-
-                if (distance < 0) {
-                    clearInterval(interval);
-                    timerElement.textContent = 'Launching soon!';
-                }
             }
 
-            const interval = setInterval(updateTimer, 1000);
-            updateTimer();
-        })();
+            calculateTime(); // Call initially to avoid delay
+            const interval = setInterval(calculateTime, 1000);
+        }
+
+        // Call updateTimer to start the countdown
+        updateTimer();
     </script>
 </body>
 </html>
