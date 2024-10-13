@@ -45,8 +45,7 @@
     <script>
         (function countdown() {
             const timerElement = document.getElementById('timer');
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 15);
+            const targetDate = new Date().getTime() + 15 * 24 * 60 * 60 * 1000; // 15 days from now
 
             function updateTimer() {
                 const now = new Date().getTime();
