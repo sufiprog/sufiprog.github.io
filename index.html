@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .timer {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .author {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coming Soon</h1>
+        <div class="timer" id="timer">15 days</div>
+        <p class="author">This site author is Muhammad Sufyan aka @sufiprog</p>
+    </div>
+    <script>
+        (function countdown() {
+            const timerElement = document.getElementById('timer');
+            let days = 15;
+            const interval = setInterval(() => {
+                days -= 1;
+                timerElement.textContent = `${days} days`;
+                if (days <= 0) {
+                    clearInterval(interval);
+                    timerElement.textContent = 'Launching soon!';
+                }
+            }, 24 * 60 * 60 * 1000); // Update every day
+        })();
+    </script>
+</body>
+</html>
